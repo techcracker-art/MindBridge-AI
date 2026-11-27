@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MindBridge AI</title><link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon">✦</span><div><b>MindBridge AI</b><small>Connected support</small></div></div>
+    <nav id="mainNav" aria-label="Main navigation">
+      <a class="active" href="#dashboard" data-view="dashboard">Overview</a>
+      <a href="#profiles" data-view="profiles">Profiles</a>
+      <a href="#goals" data-view="goals">Goals &amp; activities</a>
+      <a href="#progress" data-view="progress">Progress</a>
+      <a href="#assistant" data-view="assistant">AI assistant</a>
+    </nav>
+    <div class="side-note">A shared workspace for authorized support teams.</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><span class="eyebrow">WORKSPACE</span><h1 id="welcome">Good day</h1></div><button id="logoutBtn" class="button secondary hidden">Log out</button></header>
+    <section id="authView" class="auth-grid">
+      <div class="hero"><span class="pill">MULTIDISCIPLINARY SUPPORT PLATFORM</span><h2>Better coordination.<br><em>More connected support.</em></h2><p>Bring authorized professionals, families and schools together around shared goals and observations.</p><div class="hero-points"><span>✓ Role-aware workspace</span><span>✓ Shared goals and observations</span><span>✓ AI-assisted documentation</span></div></div>
+      <div class="panel auth-panel">
+        <div class="tabs"><button class="tab active" data-tab="login" type="button">Log in</button><button class="tab" data-tab="register" type="button">Create account</button></div>
+        <form id="loginForm"><h3>Welcome back</h3><label>Email<input name="email" type="email" required autocomplete="email"></label><label>Password<input name="password" type="password" required autocomplete="current-password"></label><button class="button primary full">Log in</button></form>
+        <form id="registerForm" class="hidden"><h3>Create your workspace</h3><label>Full name<input name="full_name" required minlength="2"></label><label>Email<input name="email" type="email" required></label><label>Organization name<input name="organization_name" required></label><label>Password (12+ characters)<input name="password" type="password" minlength="12" required autocomplete="new-password"></label><button class="button primary full">Create account</button><p class="muted tiny">Development onboarding only. Public registration must be replaced with verified invitations before deployment.</p></form>
+        <p id="authMessage" class="message" role="status"></p>
+      </div>
+    </section>
+
+    <section id="appView" class="hidden">
+      <section id="view-dashboard" class="page-view">
+        <div class="stat-grid">
+          <article class="stat"><span>Authorized profiles</span><b id="profileCount">0</b><small>In your organization</small></article>
+          <article class="stat"><span>Your workspace</span><b id="roleLabel">—</b><small>Access is role controlled</small></article>
+          <article class="stat"><span>AI assistant</span><b>Not connected</b><small>AI features are not enabled yet</small></article>
+        </div>
+        <div class="content-grid">
+          <section class="panel"><div class="section-head"><div><span class="eyebrow">PEOPLE</span><h2>Support profiles</h2></div><button class="button primary" data-go="profiles">View profiles</button></div><div id="dashboardProfileList" class="profile-list"><p class="muted">Loading profiles…</p></div></section>
+          <section class="panel"><span class="eyebrow">QUICK START</span><h2>Build connected support</h2>
+            <div class="quick-item"><span class="quick-icon">01</span><div><b>Create a profile</b><p>Add a fictional profile and non-sensitive support context.</p></div></div>
+            <div class="quick-item"><span class="quick-icon">02</span><div><b>Define a goal</b><p>Record a measurable, professionally reviewed support goal.</p></div></div>
+            <div class="quick-item"><span class="quick-icon">03</span><div><b>Review progress</b><p>Track observations over time and discuss them with the support team.</p></div></div>
+          </section>
+        </div>
+        <div class="notice"><b>Development safety notice</b><p>Use synthetic information only. This starter is not validated for clinical use and does not provide diagnosis or treatment recommendations.</p></div>
+      </section>
+
+      <section id="view-profiles" class="page-view hidden">
+        <div class="page-heading"><div><span class="eyebrow">PEOPLE</span><h2>Support profiles</h2><p class="muted">Manage profiles you are authorized to access.</p></div><button id="newProfileBtn" class="button primary">+ New profile</button></div>
+        <section class="panel"><div id="profileList" class="profile-list"><p class="muted">Loading profiles…</p></div></section>
+      </section>
+
+      <section id="view-goals" class="page-view hidden">
+        <div class="page-heading"><div><span class="eyebrow">PLANNING</span><h2>Goals &amp; activities</h2><p class="muted">Create demonstration goals and activities. This version stores goals in this browser only.</p></div></div>
+        <section class="panel"><h3>Create a goal</h3>
+          <form id="goalForm" class="inline-form">
+            <label>Profile<select id="goalProfile" name="profile" required><option value="">Choose a profile</option></select></label>
+            <label>Goal title<input name="title" required maxlength="160" placeholder="e.g. Practise a daily communication routine"></label>
+            <label>Success measure<input name="measure" maxlength="240" placeholder="e.g. Record a weekly observation"></label>
+            <button class="button primary">Add goal</button>
+          </form><p id="goalMessage" class="message" role="status"></p>
+        </section>
+        <section class="panel section-gap"><div class="section-head"><h3>Goal list</h3><span class="muted tiny">Browser demo data</span></div><div id="goalList" class="data-list"><p class="muted">No goals created yet.</p></div></section>
+      </section>
+
+      <section id="view-progress" class="page-view hidden">
+        <div class="page-heading"><div><span class="eyebrow">INSIGHTS</span><h2>Progress overview</h2><p class="muted">A simple view of goals created in this browser demo.</p></div></div>
+        <div class="stat-grid">
+          <article class="stat"><span>Total goals</span><b id="progressGoalCount">0</b><small>Demo goals</small></article>
+          <article class="stat"><span>Completed goals</span><b id="completedGoalCount">0</b><small>Marked complete</small></article>
+          <article class="stat"><span>Completion rate</span><b id="completionRate">0%</b><small>Based on demo goals</small></article>
+        </div>
+        <section class="panel"><h3>Goal progress</h3><div id="progressList" class="data-list"><p class="muted">Create a goal to see it here.</p></div></section>
+        <div class="notice">This is a basic demonstration, not a validated clinical outcome measure. Interpret progress with the responsible professional.</div>
+      </section>
+
+      <section id="view-assistant" class="page-view hidden">
+        <div class="page-heading"><div><span class="eyebrow">AI WORKSPACE</span><h2>AI assistant</h2><p class="muted">A future workspace for drafting and organizing support information.</p></div></div>
+        <section class="panel assistant-panel">
+          <div class="assistant-mark">✦</div><h3>AI connection is not configured</h3>
+          <p class="muted">The current starter does not connect to an AI provider. No message will be sent or processed here yet.</p>
+          <div class="assistant-capabilities">
+            <div><b>Activity drafting</b><small>Suggest goal-aligned activity ideas for professional review.</small></div>
+            <div><b>Session summaries</b><small>Organize notes into a draft summary for an authorized professional to review.</small></div>
+            <div><b>Progress explanations</b><small>Describe trends from recorded data without making diagnoses or treatment decisions.</small></div>
+          </div>
+          <div class="notice"><b>Safety boundary</b><p>AI outputs must be reviewed by a qualified professional. Do not enter real client, child, medical or other sensitive information into this demo.</p></div>
+        </section>
+      </section>
+    </section>
+  </main>
+</div>
+
+<dialog id="profileDialog"><form id="profileForm" method="dialog">
+  <div class="section-head"><h2>New support profile</h2><button type="button" id="closeDialog" class="icon-button" aria-label="Close">✕</button></div>
+  <label>Display name<input name="display_name" required minlength="2" maxlength="120"></label>
+  <label>Support context<select name="support_context"><option value="general">General support</option><option value="education">Education</option><option value="communication">Communication</option><option value="daily_living">Daily living</option></select></label>
+  <label>Strengths<textarea name="strengths" maxlength="2000" placeholder="Use fictional, non-sensitive example information"></textarea></label>
+  <label>Preferences<textarea name="preferences" maxlength="2000" placeholder="Optional fictional preferences"></textarea></label>
+  <button class="button primary full">Save profile</button><p id="profileMessage" class="message" role="status"></p>
+</form></dialog>
+<script src="/js/app.js"></script>
+</body></html>
